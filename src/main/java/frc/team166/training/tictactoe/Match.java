@@ -35,17 +35,38 @@ public class Match {
     public Status run(boolean verbose) {
         while (!isFinished()) {
             // Player 1's turn
-            makeMove(player1, player2);
+            makeMove(player1, player2, verbose);
 
             if (!isFinished()) {
                 // Player 2's turn
-                makeMove(player2, player1);
+                makeMove(player2, player1, verbose);
             }
         }
-        return Status.Error;
+
+        if (verbose) {
+            printState();
+            switch (getWinner()) {
+            case P1:
+                System.out.println("Player 1 Wins");
+                break;
+            case P2:
+                System.out.println("Player 2 Wins");
+                break;
+            case Tie:
+                System.out.println("Game was tied");
+                break;
+            default:
+                break;
+            }
+        }
+
+        return getWinner();
     }
 
-    void makeMove(Player p1, Player p2) {
+    void makeMove(Player p1, Player p2, boolean verbose) {
+        if (verbose) {
+            printState();
+        }
         Player.Id id = p1.getPlayerId();
         Move move;
         do {
@@ -58,6 +79,9 @@ public class Match {
     // Game status information below
 
     boolean accept(Player.Id player, Move m) {
+        if (m == null) {
+            return false;
+        }
         if (board[m.row][m.col] == Player.Id.Empty) {
             board[m.row][m.col] = player;
             return true;

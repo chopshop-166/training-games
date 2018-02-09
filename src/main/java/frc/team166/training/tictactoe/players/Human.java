@@ -2,8 +2,8 @@ package frc.team166.training.tictactoe.players;
 
 import java.util.Scanner;
 
-import frc.team166.training.rps.Move;
-import frc.team166.training.rps.Player;
+import frc.team166.training.tictactoe.Move;
+import frc.team166.training.tictactoe.Player;
 
 /**
  * Replace artificial intelligence with human interaction
@@ -17,15 +17,15 @@ public class Human extends Player {
     @SuppressWarnings("resource")
     @Override
     public Move play() {
-        System.out.print("Player " + playerNumber + ": enter a move to make: ");
+        System.out.print("Player " + getPlayerId() + ": enter a move to make: ");
         try {
             Scanner scan = new Scanner(System.in);
             String choice = scan.next();
             return Move.valueOf(choice);
         } catch (IllegalArgumentException ex) {
-            return Move.Rock;
+            return null;
         } catch (NullPointerException ex) {
-            return Move.Rock;
+            return null;
         }
     }
 }
