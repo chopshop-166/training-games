@@ -10,6 +10,13 @@
             "request": "launch",
             "mainClass": "frc.team166.training.rps.App",
             "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "Tic Tac Toe Tournament",
+            "request": "launch",
+            "mainClass": "frc.team166.training.tictactoe.App",
+            "console": "integratedTerminal"
         }
     ]
 }

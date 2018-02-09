@@ -18,7 +18,7 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'frc.team166.training.rps.App'
+mainClassName = 'frc.team166.training.tictactoe.App'
 
 run {
     standardInput = System.in
