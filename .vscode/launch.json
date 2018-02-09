@@ -8,7 +8,8 @@
             "type": "java",
             "name": "RPS Tournament",
             "request": "launch",
-            "mainClass": "frc.team166.training.rps.App"
+            "mainClass": "frc.team166.training.rps.App",
+            "console": "integratedTerminal"
         }
     ]
 }

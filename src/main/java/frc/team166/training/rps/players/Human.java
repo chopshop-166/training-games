@@ -11,11 +11,15 @@ import frc.team166.training.rps.Player;
  */
 public class Human extends Player {
     /**
-     * Generate a move based only on the current state
+     * Read a move from stdin
+     * Annotation is used because we have a scanner that shouldn't be closed
      */
+    @SuppressWarnings("resource")
+    @Override
     public Move play() {
         System.out.print("Player " + playerNumber + ": enter a move to make: ");
-        try (Scanner scan = new Scanner(System.in)) {
+        try {
+            Scanner scan = new Scanner(System.in);
             String choice = scan.next();
             return Move.valueOf(choice);
         } catch (IllegalArgumentException ex) {

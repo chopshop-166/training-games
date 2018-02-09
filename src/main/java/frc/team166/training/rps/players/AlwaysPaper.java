@@ -10,6 +10,7 @@ public class AlwaysPaper extends Player {
     /**
      * Generate a move based only on the current state
      */
+    @Override
     public Move play() {
         return Move.Paper;
     }
