@@ -1,6 +1,6 @@
 plugins {
-	id "java"
-	id "application"
+    id "java"
+    id "application"
 }
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -18,5 +18,8 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'frc.team166.training.App'
+mainClassName = 'frc.team166.training.rps.App'
 
+run {
+    standardInput = System.in
+}

@@ -14,27 +14,19 @@
             "problemMatcher": []
         },
         {
-            "label": "Clean",
+            "label": "Run",
             "type": "shell",
-            "command": ".\\gradlew clean",
-            "group": "build"
-        },
-        {
-            "label": "Deploy",
-            "type": "shell",
-            "command": ".\\gradlew deploy --offline",
-            "group": "build",
+            "command": ".\\gradlew run",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": []
         },
         {
-            "label": "Riolog",
-            "command": ".\\gradlew riolog",
-            "group": "build"
-        },
-        {
-            "label": "Shuffleboard",
+            "label": "Clean",
             "type": "shell",
-            "command": ".\\gradlew shuffleboard",
+            "command": ".\\gradlew clean",
             "group": "build"
         }
     ]
