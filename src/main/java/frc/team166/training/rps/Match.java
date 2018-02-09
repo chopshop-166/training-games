@@ -21,6 +21,10 @@ public class Match {
     }
 
     public Status run() {
+        return run(false);
+    }
+
+    public Status run(boolean verbose) {
         Move m1 = player1.play();
         Move m2 = player2.play();
 
@@ -30,13 +34,19 @@ public class Match {
         MoveComparer comp = new MoveComparer();
         switch (comp.compare(m1, m2)) {
         case 0:
-            System.out.println("The game is tied with " + m1);
+            if (verbose) {
+                System.out.println("The game is tied with " + m1);
+            }
             return Status.Tie;
         case -1:
-            System.out.println("Player 2 wins with " + m2 + " vs " + m1);
+            if (verbose) {
+                System.out.println("Player 2 wins with " + m2 + " vs " + m1);
+            }
             return Status.P2;
         case 1:
-            System.out.println("Player 1 wins with " + m1 + " vs " + m2);
+            if (verbose) {
+                System.out.println("Player 1 wins with " + m1 + " vs " + m2);
+            }
             return Status.P1;
         }
         return Status.Error;

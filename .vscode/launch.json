@@ -6,10 +6,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Attach)",
-            "request": "attach",
-            "hostName": "roboRIO-166-FRC.local",
-            "port": 8348
+            "name": "RPS Tournament",
+            "request": "launch",
+            "mainClass": "frc.team166.training.rps.App"
         }
     ]
 }

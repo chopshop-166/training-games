@@ -30,6 +30,6 @@ public abstract class Player {
 
     @Override
     public String toString() {
-        return "Player " + playerNumber;
+        return getClass().getSimpleName();
     }
 }
