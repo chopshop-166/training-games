@@ -2,6 +2,7 @@ package frc.team166.training.tictactoe.players;
 
 import java.util.Random;
 
+import frc.team166.training.core.TournamentReady;
 import frc.team166.training.tictactoe.Move;
 import frc.team166.training.tictactoe.Player;
 
@@ -9,6 +10,7 @@ import frc.team166.training.tictactoe.Player;
  * Replace artificial intelligence with human interaction
  * If they enter something other than a valid name, then their choice is as dumb as a rock, so return one
  */
+@TournamentReady
 public class RandomAI extends Player {
     Random rnd = new Random();
 
