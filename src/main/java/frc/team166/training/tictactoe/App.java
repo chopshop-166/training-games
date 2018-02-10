@@ -1,6 +1,7 @@
 package frc.team166.training.tictactoe;
 
 import frc.team166.training.tictactoe.players.Human;
+import frc.team166.training.tictactoe.players.RandomAI;
 
 public class App {
     public static void main(String[] args) {
@@ -9,16 +10,7 @@ public class App {
                 new AlwaysScissors());
         t.run();
         */
-        Match m = new Match(new Human(), new Human());
-        /*
-        m.accept(Player.Id.X, Move.A1);
-        m.accept(Player.Id.X, Move.B1);
-        m.printState();
-        System.out.println(m.getWinner());
-        m.accept(Player.Id.X, Move.C1);
-        m.printState();
-        System.out.println(m.getWinner());
-        */
-        m.run();
+        Match m = new Match(new Human(), new RandomAI());
+        m.run(true);
     }
 }
