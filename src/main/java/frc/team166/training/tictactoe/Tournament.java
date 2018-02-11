@@ -1,5 +1,6 @@
 package frc.team166.training.tictactoe;
 
+import frc.team166.training.core.MatchStatus;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -57,7 +58,7 @@ public class Tournament {
         Match match = new Match(p1, p2);
         int wins = 0;
         for (int i = 0; (i < numMatches || wins == 0) && (i < numMatches * 2); i++) {
-            Match.Status st = match.run(verbose);
+            MatchStatus st = match.run(verbose);
             switch (st) {
             case P1:
                 wins++;

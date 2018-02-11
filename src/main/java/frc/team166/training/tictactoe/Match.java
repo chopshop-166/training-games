@@ -1,13 +1,11 @@
 package frc.team166.training.tictactoe;
 
+import frc.team166.training.core.MatchStatus;
+
 /**
  * The base class for all AI players
  */
 public class Match {
-
-    enum Status {
-        Tie, P1, P2, Error
-    }
 
     Player player1;
     Player player2;
@@ -28,11 +26,11 @@ public class Match {
         }
     }
 
-    public Status run() {
+    public MatchStatus run() {
         return run(false);
     }
 
-    public Status run(boolean verbose) {
+    public MatchStatus run(boolean verbose) {
         while (!isFinished()) {
             // Player 1's turn
             makeMove(player1, player2, verbose);
@@ -91,7 +89,7 @@ public class Match {
     }
 
     boolean isFinished() {
-        return getWinner() != Status.Error;
+        return getWinner() != MatchStatus.Error;
     }
 
     void printState() {
@@ -102,7 +100,7 @@ public class Match {
         System.out.println(" " + board[2][0] + " | " + board[2][1] + " | " + board[2][2]);
     }
 
-    Status getWinner() {
+    MatchStatus getWinner() {
         if (board[0][0] != Player.Id.Empty) {
             if ((board[0][0] == board[0][1] && board[0][1] == board[0][2])
                     || (board[0][0] == board[1][0] && board[1][0] == board[2][0])
@@ -132,27 +130,27 @@ public class Match {
             }
         }
         if (isTied) {
-            return Status.Tie;
+            return MatchStatus.Tie;
         }
-        return Status.Error;
+        return MatchStatus.Error;
     }
 
-    Status toStatus(Player.Id id) {
+    MatchStatus toStatus(Player.Id id) {
         switch (id) {
         case X:
             if (player1.getPlayerId() == Player.Id.X) {
-                return Status.P1;
+                return MatchStatus.P1;
             } else {
-                return Status.P2;
+                return MatchStatus.P2;
             }
         case O:
             if (player1.getPlayerId() == Player.Id.O) {
-                return Status.P1;
+                return MatchStatus.P1;
             } else {
-                return Status.P2;
+                return MatchStatus.P2;
             }
         default:
-            return Status.Error;
+            return MatchStatus.Error;
         }
     }
 }

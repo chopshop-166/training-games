@@ -42,7 +42,7 @@ public abstract class Player {
     }
 
     /**
-     * Determine what move the opponent made last game
+     * Set the current player's ID
      * @param move The last move the opponent made
      */
     public void setPlayerId(Id id) {
@@ -50,7 +50,7 @@ public abstract class Player {
     }
 
     /**
-     * Determine what move the opponent made last game
+     * Get this player's ID
      */
     public Id getPlayerId() {
         return playerId;
