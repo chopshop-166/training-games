@@ -1,47 +1,28 @@
 package frc.team166.training.tictactoe;
 
+import frc.team166.training.core.AppBase;
 import frc.team166.training.core.TournamentReady;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.Stream;
 import org.reflections.Reflections;
 
-public class App {
+public class App extends AppBase {
     final static String ROOT_PLAYER_PATH = "frc.team166.training.tictactoe.players";
 
     public static void main(String[] args) {
-        Player[] tournamentPlayers;
+        Stream<Class<?>> playerClasses;
         if (args.length == 0) {
             final Reflections reflections = new Reflections(ROOT_PLAYER_PATH);
             Set<Class<?>> allTournamentReady = reflections.getTypesAnnotatedWith(TournamentReady.class);
-            tournamentPlayers = allTournamentReady.stream().map(c -> {
-                try {
-                    return c.newInstance();
-                } catch (InstantiationException ex) {
-                    System.err.println("Could not initialize " + c + ": InstantiationException");
-                    return null;
-                } catch (IllegalAccessException ex) {
-                    System.err.println("Could not initialize " + c + ": IllegalAccessException");
-                    return null;
-                }
-            }).filter(p -> p != null).toArray(Player[]::new);
+            playerClasses = allTournamentReady.stream();
         } else {
-            tournamentPlayers = Arrays.stream(args).map(n -> {
-                try {
-                    return Class.forName(ROOT_PLAYER_PATH + "." + n).newInstance();
-                } catch (InstantiationException ex) {
-                    System.err.println("Could not initialize " + n + ": InstantiationException");
-                    return null;
-                } catch (IllegalAccessException ex) {
-                    System.err.println("Could not initialize " + n + ": IllegalAccessException");
-                    return null;
-                } catch (ClassNotFoundException ex) {
-                    System.err.println("Could not initialize " + n + ": ClassNotFoundException");
-                    return null;
-                }
-            }).filter(p -> p != null).toArray(Player[]::new);
+            playerClasses = Arrays.stream(args).map(n -> lookupClass(ROOT_PLAYER_PATH + "." + n));
         }
+        Stream<Player> tournamentPlayers = playerClasses.map(AppBase::initializePlayer).map(Player.class::cast)
+                .filter(p -> p != null);
         Tournament tournament = new Tournament(5);
-        tournament.setPlayers(tournamentPlayers);
+        tournament.setPlayers(tournamentPlayers.toArray(Player[]::new));
         tournament.run(true);
     }
 }

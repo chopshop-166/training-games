@@ -17,30 +17,22 @@ public class Tournament extends TournamentBase<Player> {
     protected Player runMatchup(Player p1, Player p2, boolean verbose) {
         Match match = new Match();
         match.setPlayers(p1, p2);
-        int wins = 0;
-        for (int i = 0; (i < numMatches || wins == 0) && (i < numMatches * 2); i++) {
+        int wins1 = 0;
+        int wins2 = 0;
+        for (int i = 0; (i < numMatches || wins1 == wins2) && (i < numMatches * 2); i++) {
             MatchStatus st = match.run(verbose);
             switch (st) {
             case P1:
-                wins++;
+                wins1++;
                 break;
             case P2:
-                wins--;
+                wins2++;
                 break;
             default:
                 break;
             }
         }
 
-        if (wins > 0) {
-            System.out.println("Player 1 (" + p1 + ") wins against Player 2 (" + p2 + ")");
-            return p1;
-        } else if (wins < 0) {
-            System.out.println("Player 2 (" + p2 + ") wins against Player 1 (" + p1 + ")");
-            return p2;
-        } else {
-            System.out.println("Player 1 (" + p1 + ") and Player 1 (" + p2 + ") are ill-behaved, removing both");
-            return null;
-        }
+        return showResults(p1, p2, wins1, wins2);
     }
 }

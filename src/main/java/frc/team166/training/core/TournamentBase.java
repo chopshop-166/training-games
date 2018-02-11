@@ -57,4 +57,19 @@ public abstract class TournamentBase<Player extends PlayerBase<?, ?>> {
     }
 
     abstract protected Player runMatchup(Player p1, Player p2, boolean verbose);
+
+    protected Player showResults(Player p1, Player p2, int wins1, int wins2) {
+        System.out.println("Player " + p1.getPlayerId() + ": " + p1 + " (" + wins1 + " wins)");
+        System.out.println("Player " + p2.getPlayerId() + ": " + p2 + " (" + wins2 + " wins)");
+        if (wins1 > wins2) {
+            System.out.println("Player " + p1.getPlayerId() + " wins");
+            return p1;
+        } else if (wins1 < wins2) {
+            System.out.println("Player " + p2.getPlayerId() + " wins");
+            return p2;
+        } else {
+            System.out.println("Tie, removing both players");
+            return null;
+        }
+    }
 }
