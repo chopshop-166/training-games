@@ -1,29 +1,28 @@
 package frc.team166.training.tictactoe;
 
+import frc.team166.training.core.MatchBase;
 import frc.team166.training.core.MatchStatus;
 
 /**
  * The base class for all AI players
  */
-public class Match {
+public class Match extends MatchBase<Player> {
 
-    Player player1;
-    Player player2;
-    Player.Id board[][] = new Player.Id[3][3];
+    Id board[][] = new Id[3][3];
 
-    public Match(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-
-        player1.setPlayerId(Player.Id.X);
-        player2.setPlayerId(Player.Id.O);
-
+    public Match() {
         // Initialize the board
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                board[i][j] = Player.Id.Empty;
+                board[i][j] = Id.Empty;
             }
         }
+    }
+
+    @Override
+    public void setPlayerIds() {
+        player1.setPlayerId(Id.X);
+        player2.setPlayerId(Id.O);
     }
 
     public MatchStatus run() {
@@ -65,7 +64,7 @@ public class Match {
         if (verbose) {
             printState();
         }
-        Player.Id id = p1.getPlayerId();
+        Id id = p1.getPlayerId();
         Move move;
         do {
             move = p1.play();
@@ -76,11 +75,11 @@ public class Match {
 
     // Game status information below
 
-    boolean accept(Player.Id player, Move m) {
+    boolean accept(Id player, Move m) {
         if (m == null) {
             return false;
         }
-        if (board[m.row][m.col] == Player.Id.Empty) {
+        if (board[m.row][m.col] == Id.Empty) {
             board[m.row][m.col] = player;
             return true;
         } else {
@@ -101,21 +100,21 @@ public class Match {
     }
 
     MatchStatus getWinner() {
-        if (board[0][0] != Player.Id.Empty) {
+        if (board[0][0] != Id.Empty) {
             if ((board[0][0] == board[0][1] && board[0][1] == board[0][2])
                     || (board[0][0] == board[1][0] && board[1][0] == board[2][0])
                     || (board[0][0] == board[1][1] && board[1][1] == board[2][2])) {
                 return toStatus(board[0][0]);
             }
         }
-        if (board[1][1] != Player.Id.Empty) {
+        if (board[1][1] != Id.Empty) {
             if ((board[0][1] == board[1][1] && board[0][1] == board[1][2])
                     || (board[1][0] == board[1][1] && board[1][1] == board[1][2])
                     || (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
                 return toStatus(board[1][1]);
             }
         }
-        if (board[2][2] != Player.Id.Empty) {
+        if (board[2][2] != Id.Empty) {
             if ((board[2][0] == board[2][1] && board[2][1] == board[2][2])
                     || (board[0][2] == board[1][2] && board[1][2] == board[2][2])) {
                 return toStatus(board[2][2]);
@@ -124,7 +123,7 @@ public class Match {
         boolean isTied = true;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (board[i][j] == Player.Id.Empty) {
+                if (board[i][j] == Id.Empty) {
                     isTied = false;
                 }
             }
@@ -135,16 +134,16 @@ public class Match {
         return MatchStatus.Error;
     }
 
-    MatchStatus toStatus(Player.Id id) {
+    MatchStatus toStatus(Id id) {
         switch (id) {
         case X:
-            if (player1.getPlayerId() == Player.Id.X) {
+            if (player1.getPlayerId() == Id.X) {
                 return MatchStatus.P1;
             } else {
                 return MatchStatus.P2;
             }
         case O:
-            if (player1.getPlayerId() == Player.Id.O) {
+            if (player1.getPlayerId() == Id.O) {
                 return MatchStatus.P1;
             } else {
                 return MatchStatus.P2;

@@ -1,25 +1,17 @@
 package frc.team166.training.rps;
 
+import frc.team166.training.core.MatchBase;
 import frc.team166.training.core.MatchStatus;
 
 /**
- * The base class for all AI players
+ * A single instance of Rock Paper Scissors
  */
-public class Match {
+public class Match extends MatchBase<Player> {
 
-    Player player1;
-    Player player2;
-
-    public Match(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-
-        player1.setPlayerId(Player.Id.A);
-        player2.setPlayerId(Player.Id.B);
-    }
-
-    public MatchStatus run() {
-        return run(false);
+    @Override
+    public void setPlayerIds() {
+        player1.setPlayerId(Id.A);
+        player2.setPlayerId(Id.B);
     }
 
     public MatchStatus run(boolean verbose) {
