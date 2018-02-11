@@ -20,7 +20,7 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'frc.team166.training.ab.App'
+mainClassName = 'frc.team166.training.rps.App'
 
 run {
     standardInput = System.in
