@@ -25,6 +25,21 @@
             "request": "launch",
             "mainClass": "frc.team166.training.tictactoe.App",
             "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "AB Tournament",
+            "request": "launch",
+            "mainClass": "frc.team166.training.ab.App",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "AB Demo",
+            "request": "launch",
+            "mainClass": "frc.team166.training.ab.App",
+            "console": "integratedTerminal",
+            "args": "Human AlwaysAlly"
         }
     ]
 }
