@@ -14,12 +14,12 @@ public abstract class TournamentBase<Player extends PlayerBase<?, ?>> {
     protected int numMatches;
     protected Player[] players;
 
-    public TournamentBase(int numMatches, Player... players) {
+    public TournamentBase(int numMatches) {
         this.numMatches = numMatches;
+    }
+
+    public void setPlayers(Player[] players) {
         this.players = players;
-        for (Player p : players) {
-            System.out.println(p);
-        }
     }
 
     public void run() {

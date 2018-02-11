@@ -9,8 +9,8 @@ import frc.team166.training.core.TournamentBase;
  */
 public class Tournament extends TournamentBase<Player> {
 
-    public Tournament(int numMatches, Player... players) {
-        super(numMatches, players);
+    public Tournament(int numMatches) {
+        super(numMatches);
     }
 
     @Override

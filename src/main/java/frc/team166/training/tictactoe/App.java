@@ -40,7 +40,8 @@ public class App {
                 }
             }).filter(p -> p != null).toArray(Player[]::new);
         }
-        Tournament tournament = new Tournament(5, tournamentPlayers);
+        Tournament tournament = new Tournament(5);
+        tournament.setPlayers(tournamentPlayers);
         tournament.run(true);
     }
 }
